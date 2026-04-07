@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <title>Marine Life in Danger – Life Below Water</title>
+
+        <style>
+    
+            .internal-nav {
+                background: linear-gradient(135deg, #003f6b 0%, #0077b6 100%);
+                border-radius: 12px;
+                padding: 20px 28px;
+                margin-bottom: 40px;
+            }
+
+            .internal-nav h2 {
+                color: #90e0ef;
+                font-size: 0.85rem;
+                letter-spacing: 0.12em;
+                text-transform: uppercase;
+                margin-bottom: 12px;
+            }
+
+            .internal-nav ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .internal-nav ul li a {
+                color: #d8f3dc;
+                text-decoration: none;
+                font-size: 0.92rem;
+                padding: 6px 14px;
+                border: 1px solid rgba(144, 224, 239, 0.4);
+                border-radius: 20px;
+                transition: background 0.2s ease, color 0.2s ease;
+            }
+
+            .internal-nav ul li a:hover {
+                background: rgba(144, 224, 239, 0.2);
+                color: #ffffff;
+            }
+
+            .content-hero {
+                position: relative;
+                background: linear-gradient(160deg, #03045e 0%, #0077b6 50%, #00b4d8 100%);
+                border-radius: 16px;
+                padding: 60px 40px;
+                margin-bottom: 50px;
+                text-align: center;
+                color: white;
+                overflow: hidden;
+                margin-top: 10px;
+            }
+
+            .content-hero::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 200'%3E%3Cpath fill='rgba(255,255,255,0.05)' d='M0,96L80,106.7C160,117,320,139,480,138.7C640,139,800,117,960,101.3C1120,85,1280,75,1360,69.3L1440,64L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z'/%3E%3C/svg%3E") bottom / cover no-repeat;
+                pointer-events: none;
+            }
+
+            .content-hero h1 {
+                font-size: 2.4rem;
+                margin-bottom: 12px;
+                text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+            }
+
+            .content-hero p.subtitle {
+                font-size: 1.1rem;
+                color: #90e0ef;
+                max-width: 620px;
+                margin: 0 auto;
+                line-height: 1.6;
+            }
+
+            .stat-bar {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+                justify-content: center;
+                margin-bottom: 50px;
+            }
+
+            .stat-item {
+                background: white;
+                border-radius: 12px;
+                padding: 22px 30px;
+                text-align: center;
+                box-shadow: 0 4px 15px rgba(45, 106, 79, 0.15);
+                flex: 1;
+                min-width: 160px;
+                border-top: 4px solid #0077b6;
+            }
+
+            .stat-item .number {
+                font-size: 2rem;
+                font-weight: 700;
+                color: #0077b6;
+                display: block;
+            }
+
+            .stat-item .label {
+                font-size: 0.85rem;
+                color: #555;
+                margin-top: 4px;
+            }
+
+            .content-section {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+                align-items: center;
+                margin-bottom: 60px;
+                padding-bottom: 50px;
+                border-bottom: 1px solid #d8f3dc;
+            }
+
+            .content-section.reverse {
+                direction: rtl;
+            }
+
+            .content-section.reverse > * {
+                direction: ltr;
+            }
+
+            .content-section:last-of-type {
+                border-bottom: none;
+            }
+
+            .content-section img {
+                width: 100%;
+                border-radius: 14px;
+                box-shadow: 0 8px 30px rgba(0, 64, 128, 0.2);
+                border: 3px solid #caf0f8;
+            }
+
+            .content-section h2 {
+                font-size: 1.6rem;
+                color: #03045e;
+                margin-bottom: 14px;
+            }
+
+            .content-section h2::after {
+                content: '';
+                display: block;
+                width: 50px;
+                height: 4px;
+                background: #00b4d8;
+                border-radius: 2px;
+                margin-top: 8px;
+            }
+
+            .content-section p {
+                color: #444;
+                line-height: 1.75;
+                margin-bottom: 12px;
+            }
+
+            .content-section ul {
+                color: #444;
+                line-height: 1.8;
+                padding-left: 20px;
+                margin-bottom: 12px;
+            }
+
+            .callout {
+                background: linear-gradient(135deg, #caf0f8, #ade8f4);
+                border-left: 5px solid #0077b6;
+                border-radius: 8px;
+                padding: 20px 24px;
+                margin: 20px 0;
+                color: #03045e;
+                font-style: italic;
+                line-height: 1.7;
+            }
+
+            .species-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 20px;
+                margin: 30px 0 50px;
+            }
+
+            .species-card {
+                background: white;
+                border-radius: 12px;
+                overflow: hidden;
+                box-shadow: 0 4px 15px rgba(45, 106, 79, 0.12);
+                border-top: 4px solid #0077b6;
+                text-align: center;
+                transition: transform 0.3s ease;
+            }
+
+            .species-card:hover {
+                transform: translateY(-6px);
+            }
+
+            .species-card img {
+                width: 100%;
+                height: 150px;
+                object-fit: cover;
+                color:#0077b6
+            }
+
+            .species-card h3 {
+                font-size: 1rem;
+                color: #1b4332;
+                padding: 10px 14px 4px;
+            }
+
+            .species-card p {
+                font-size: 0.82rem;
+                color: #666;
+                padding: 0 14px 14px;
+                line-height: 1.5;
+            }
+
+            .danger-badge {
+                display: inline-block;
+                background: #c62828;
+                color: white;
+                font-size: 0.7rem;
+                font-weight: 700;
+                letter-spacing: 0.08em;
+                padding: 3px 10px;
+                border-radius: 20px;
+                margin: 10px 0 4px;
+                text-transform: uppercase;
+            }
+
+            .go-top {
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                background: #0077b6;
+                color: white;
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 4px 15px rgba(0, 119, 182, 0.4);
+                transition: background 0.2s ease, transform 0.2s ease;
+                z-index: 999;
+            }
+
+            .go-top:hover {
+                background: #023e8a;
+                transform: translateY(-3px);
+            }
+
+        </style>
+    </head>
+
+    <body>
+    
+        <header>
+            
+            <a href="splash.html">
+                <img src="images/logo.png" alt="Life Below Water website logo" class="logo">
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="content_ST1.html">The State of Our Oceans </a></li>
+                    <li><a href="content_ST2.html" class="active">Marine Life in Danger</a></li>
+                    <li><a href="content_ST3.html">How Communities are Helping</a></li>
+                    <li><a href="content_ST4.html">Future Conservation Tech</a></li>
+
+            </nav>
+        </header>
+
+        <main id="top">
+
+            <div class="content-hero">
+                <h1>🌊 Marine Life in Danger</h1>
+                <p class="subtitle">
+                    Thousands of marine species are racing towards extinction.
+                    Understanding why — and what we can do — has never been more urgent.
+                </p>
+            </div>
+
+            <nav class="internal-nav" aria-label="Page sections">
+                <h2>Jump to a Section</h2>
+                <ul>
+                    <li><a href="#biodiversity">Ocean Biodiversity</a></li>
+                    <li><a href="#threats">Key Threats</a></li>
+                    <li><a href="#endangered">Endangered Species</a></li>
+                    <li><a href="#coral">Coral Reefs</a></li>
+                    <li><a href="#action">How We Can Help</a></li>
+                </ul>
+            </nav>
+
+            <div class="stat-bar" aria-label="Key marine life statistics">
+                <div class="stat-item">
+                    <span class="number">33%</span>
+                    <span class="label">of shark &amp; ray species threatened</span>
+                </div>
+                <div class="stat-item">
+                    <span class="number">2,270+</span>
+                    <span class="label">marine species on the IUCN Red List</span>
+                </div>
+                <div class="stat-item">
+                    <span class="number">50%</span>
+                    <span class="label">of coral reefs lost since 1950</span>
+                </div>
+                <div class="stat-item">
+                    <span class="number">300K</span>
+                    <span class="label">whales &amp; dolphins killed by bycatch yearly</span>
+                </div>
+            </div>
+
+            <!-- Section 1: Ocean Biodiversity -->
+            <div id="biodiversity" class="section-wrapper">
+                <div class="content-section">
+                    <img
+                        src="images/Colourful coral reef teeming with fish and marine life.jpg"
+                        alt="Colourful coral reef teeming with fish and marine life"
+                        width="600" height="400"
+                    >
+                    <div>
+                        <h2>Ocean Biodiversity</h2>
+                        <p>
+                            The ocean is home to an estimated <strong>700,000 to 1 million species</strong>,
+                            though scientists believe up to two-thirds of marine life has yet to be
+                            discovered. From microscopic plankton to 30-metre blue whales, this
+                            biodiversity keeps our entire planet functioning.
+                        </p>
+                        <p>
+                            Marine ecosystems — coral reefs, mangroves, seagrass beds, and the
+                            deep sea — are deeply interconnected. When one species disappears,
+                            it creates a ripple effect through the entire food web, often in ways
+                            we cannot predict.
+                        </p>
+                        <div class="callout">
+                            The ocean provides ecosystem services worth an estimated
+                            $2.5 trillion every year — food, oxygen, climate regulation,
+                            and cultural value for billions of people.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="threats" class="section-wrapper">
+                <div class="content-section reverse">
+                    <img
+                        src="images/Ocean pollution with plastic debris floating near the surface.jpg"
+                        alt="Ocean pollution with plastic debris floating near the surface"
+                        width="600" height="400"
+                    >
+                    <div>
+                        <h2>Key Threats to Marine Life</h2>
+                        <p>
+                            Marine animals face a combination of pressures, many of which are
+                            caused directly by human activity:
+                        </p>
+                        <ul>
+                            <li>
+                                <strong>Pollution</strong> — Plastic, chemicals, agricultural runoff,
+                                and noise pollution disrupt feeding, reproduction, and navigation
+                                for countless species.
+                            </li>
+                            <li>
+                                <strong>Climate change</strong> — Rising temperatures and acidification
+                                destroy habitats and shift the distribution of prey, forcing animals
+                                to migrate or starve.
+                            </li>
+                            <li>
+                                <strong>Overfishing</strong> — Unsustainable fishing removes fish
+                                faster than they can breed, collapsing food webs that took thousands
+                                of years to develop.
+                            </li>
+                            <li>
+                                <strong>Habitat destruction</strong> — Coastal development, dredging,
+                                and bottom trawling physically destroy the seabed habitats animals
+                                depend on.
+                            </li>
+                            <li>
+                                <strong>Illegal wildlife trade</strong> — Species like sea turtles,
+                                seahorses, and sharks are hunted illegally for food, medicine, and
+                                the exotic pet trade.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="endangered" class="section-wrapper">
+                <h2 style="color:#1b4332; margin-bottom: 8px;">Endangered Species to Know</h2>
+                <p style="color:#444; margin-bottom: 24px;">
+                    These are some of the most well-known marine species currently facing
+                    extinction due to human pressure. Each plays a vital role in its ecosystem.
+                </p>
+                <div class="species-grid">
+
+                    <div class="species-card">
+                        <img src="images/Sea turtle swimming through clear ocean water.jpg" alt="Sea turtle swimming through clear ocean water">
+                        <span class="danger-badge">Endangered</span>
+                        <h3>Sea Turtle</h3>
+                        <p>Threatened by plastic ingestion, fishing nets, and beach development that destroys nesting sites.</p>
+                    </div>
+
+                    <div class="species-card">
+                        <img src="images/Whale breaching the ocean surface.jpg" alt="Whale breaching the ocean surface">
+                        <span class="danger-badge">Vulnerable</span>
+                        <h3>Blue Whale</h3>
+                        <p>The largest animal on Earth, still recovering from commercial whaling. Now threatened by ship strikes and noise pollution.</p>
+                    </div>
+
+                    <div class="species-card">
+                        <img src="images/Shark swimming in the deep ocean.jpg" alt="Shark swimming in the deep ocean">
+                        <span class="danger-badge">Endangered</span>
+                        <h3>Great White Shark</h3>
+                        <p>Killed for their fins and caught as bycatch. As apex predators, their loss destabilises entire ocean ecosystems.</p>
+                    </div>
+
+                    <div class="species-card">
+                        <img src="images/Seahorse clinging to coral in shallow water.jpg" alt="Seahorse clinging to coral in shallow water">
+                        <span class="danger-badge">Vulnerable</span>
+                        <h3>Seahorse</h3>
+                        <p>Over 37 million seahorses are traded each year for traditional medicine and the aquarium trade.</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="coral" class="section-wrapper">
+                <div class="content-section">
+                    <img
+                        src="images/Bleached white coral reef with very few fish remaining.jpg"
+                        alt="Bleached white coral reef with very few fish remaining"
+                        width="600" height="400"
+                    >
+                    <div>
+                        <h2>The Crisis Facing Coral Reefs</h2>
+                        <p>
+                            Coral reefs are sometimes called the "rainforests of the sea." They
+                            cover less than <strong>1% of the ocean floor</strong> yet support
+                            around <strong>25% of all marine species</strong>. Without them,
+                            the ocean food web collapses.
+                        </p>
+                        <p>
+                            When oceans warm, corals expel the algae living in their tissues and
+                            turn completely white — a process called <strong>coral bleaching</strong>.
+                            Bleached coral is not dead yet, but if temperatures stay high it will die.
+                            Mass bleaching events now happen five times more often than in the 1980s.
+                        </p>
+                        <ul>
+                            <li>The Great Barrier Reef has experienced <strong>six mass bleaching events</strong> since 1998.</li>
+                            <li>Scientists warn that at 2°C of warming, <strong>99% of coral reefs</strong> could be lost.</li>
+                            <li>Around <strong>500 million people</strong> depend on reefs for food, income, and coastal protection.</li>
+                        </ul>
+                        <div class="callout">
+                            Protecting coral reefs is not just about saving beautiful wildlife —
+                            it is about protecting the livelihoods and food security of half a
+                            billion people worldwide.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="action" class="section-wrapper">
+                <div class="content-section reverse">
+                    <img
+                        src="images/Group of people doing a beach cleanup on a sunny day.jpg"
+                        alt="Group of people doing a beach cleanup on a sunny day"
+                        width="600" height="400"
+                    >
+                    <div>
+                        <h2>How We Can Help</h2>
+                        <p>
+                            Protecting marine life does not require being a marine biologist.
+                            As students and everyday citizens, these three actions make a
+                            real difference:
+                        </p>
+                        <ul>
+                            <li>
+                                <strong>Say no to single-use plastic.</strong> Straws, bags, and
+                                bottles are the leading items found in turtle stomachs. Switching
+                                to reusables directly saves lives.
+                            </li>
+                            <li>
+                                <strong>Support sustainable seafood.</strong> Choose fish caught
+                                or farmed responsibly. The Marine Stewardship Council (MSC) label
+                                is a simple guide to look for at supermarkets and restaurants.
+                            </li>
+                            <li>
+                                <strong>Spread awareness.</strong> Share what you learn with family
+                                and friends. Consumer pressure and public awareness have driven
+                                real policy changes — from plastic bag bans to shark fin trade
+                                restrictions.
+                            </li>
+                        </ul>
+                        <div class="callout">
+                            Every choice we make as consumers — what we eat, what we buy,
+                            what we throw away — has a direct impact on life below water.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <a href="#top" class="go-top" aria-label="Go back to top of page">&#8679;</a>
+
+        <footer>
+            <div class="footer-links">
+                <a href="pageEditor_ST2.html">Page Editor</a>
+                <a href="validation_ST2.html" target="_blank">Validation</a>
+                <a href="accessibility.html">Accessibility</a>
+            </div>
+            <div>
+                <p>Developed by Dasun Renuja · w2149556/20242009</p>
+            </div>
+        </footer>
+
+    </body>
+</html>

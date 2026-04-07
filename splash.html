@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Life Below Water – SDG 14</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body { overflow: hidden; }
+
+    #splash {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      gap: 1rem;
+      font-family: 'Poppins', sans-serif;
+      color: #e0f7ff;
+      overflow: hidden;
+      transition: opacity 0.8s ease;
+    }
+
+    #splash.hide {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .splash-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, #010f1e 0%, #023e6e 60%, #0a6e9e 100%);
+      z-index: 0;
+    }
+
+    .bubbles { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+
+    .bubble {
+      position: absolute;
+      bottom: -50px;
+      border-radius: 50%;
+      background: rgba(100,220,240,0.15);
+      border: 1px solid rgba(100,220,240,0.3);
+      animation: rise linear infinite;
+    }
+
+    .bubble:nth-child(1) { width:12px; height:12px; left:10%; animation-duration:8s;  animation-delay:0s; }
+    .bubble:nth-child(2) { width:7px;  height:7px;  left:25%; animation-duration:11s; animation-delay:2s; }
+    .bubble:nth-child(3) { width:15px; height:15px; left:40%; animation-duration:9s;  animation-delay:1s; }
+    .bubble:nth-child(4) { width:5px;  height:5px;  left:55%; animation-duration:13s; animation-delay:3s; }
+    .bubble:nth-child(5) { width:10px; height:10px; left:70%; animation-duration:7s;  animation-delay:0.5s; }
+    .bubble:nth-child(6) { width:8px;  height:8px;  left:85%; animation-duration:10s; animation-delay:4s; }
+
+    @keyframes rise {
+      0%   { transform: translateY(0); opacity: 0; }
+      10%  { opacity: 0.7; }
+      90%  { opacity: 0.4; }
+      100% { transform: translateY(-105vh); opacity: 0; }
+    }
+
+    .splash-content {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      animation: fadeUp 1.2s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .splash-icon {
+      font-size: 4rem;
+      line-height: 1;
+      filter: drop-shadow(0 0 24px rgba(14,165,200,0.8));
+      animation: bob 3s ease-in-out infinite;
+    }
+
+    @keyframes bob {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-10px); }
+    }
+
+    .splash-badge {
+      display: inline-block;
+      background: rgba(14,165,200,0.15);
+      border: 1px solid rgba(14,165,200,0.5);
+      color: #7de4f0;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.35rem 1.1rem;
+      border-radius: 50px;
+    }
+
+    .splash-title {
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-weight: 700;
+      color: #e0f7ff;
+      line-height: 1.15;
+      text-shadow: 0 0 40px rgba(14,165,200,0.4);
+    }
+
+    .splash-title span { color: #7de4f0; }
+
+    .splash-mission {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: rgba(224,247,255,0.7);
+      line-height: 1.75;
+      max-width: 480px;
+    }
+
+    .splash-divider {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #0ea5c8, transparent);
+    }
+
+    .team-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(125,228,240,0.45);
+    }
+
+    .team-names {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.4rem 1.4rem;
+    }
+
+    .team-names span {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: rgba(224,247,255,0.85);
+    }
+
+    .loader-track {
+      width: 260px;
+      height: 3px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .loader-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #0ea5c8, #7de4f0);
+      border-radius: 99px;
+      animation: fill 4s linear forwards;
+    }
+
+    @keyframes fill {
+      from { width: 0%; }
+      to   { width: 100%; }
+    }
+
+    .splash-countdown {
+      font-size: 0.8rem;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      color: rgba(125,228,240,0.65);
+    }
+
+    .skip-btn {
+      display: inline-block;
+      padding: 0.5rem 1.8rem;
+      border: 1px solid rgba(14,165,200,0.45);
+      border-radius: 50px;
+      background: transparent;
+      color: #7de4f0;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s, color 0.3s, border-color 0.3s;
+    }
+
+    .skip-btn:hover {
+      background: rgba(14,165,200,0.18);
+      border-color: #7de4f0;
+      color: #e0f7ff;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="splash" role="region" aria-label="Splash screen">
+
+    <div class="splash-bg" aria-hidden="true"></div>
+
+    <div class="bubbles" aria-hidden="true">
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+    </div>
+
+    <div class="splash-content">
+
+      <span class="splash-icon" aria-hidden="true">🌊</span>
+
+      <div class="splash-badge">SDG Goal 14</div>
+
+      <h1 class="splash-title">Life <span>Below Water</span></h1>
+
+      <p class="splash-mission">
+        Our oceans are in crisis. Together, we explore how individuals
+        and communities can take real action to protect marine life.
+      </p>
+
+      <div class="splash-divider" aria-hidden="true"></div>
+
+      <p class="team-label">Our Team</p>
+      <div class="team-names" role="list" aria-label="Team members">
+        <span role="listitem">Thevindu Jayasinghe</span>
+        <span role="listitem">Dasun Renuja</span>
+        <span role="listitem">Ranuka Samarasinghe</span>
+        <span role="listitem">Hasaka Perera</span>
+      </div>
+
+      <div class="loader-track" role="progressbar" aria-label="Loading" aria-valuemin="0" aria-valuemax="100">
+        <div class="loader-bar"></div>
+      </div>
+
+      <p class="splash-countdown" id="countdown" aria-live="polite">Entering site in 4…</p>
+
+      <button class="skip-btn" id="skipBtn" aria-label="Skip intro and go to home page">
+        Skip Intro →
+      </button>
+
+    </div>
+  </div>
+
+  <script>
+    const splashEl    = document.getElementById('splash');
+    const countdownEl = document.getElementById('countdown');
+    const skipBtn     = document.getElementById('skipBtn');
+
+    let seconds = 4;
+    let started = false;
+
+    function goHome() {
+      if (started) return;
+      started = true;
+
+      splashEl.classList.add('hide');
+
+      setTimeout(function () {
+        window.location.href = 'home.html';
+      }, 800);
+    }
+
+    function tick() {
+      if (seconds > 0) {
+        countdownEl.textContent = 'Entering site in ' + seconds + '…';
+        seconds--;
+        setTimeout(tick, 1000);
+      } else {
+        countdownEl.textContent = 'Welcome!';
+        goHome();
+      }
+    }
+
+    tick();
+
+    skipBtn.addEventListener('click', function () {
+      seconds = 0;
+      goHome();
+    });
+  </script>
+
+</body>
+</html>

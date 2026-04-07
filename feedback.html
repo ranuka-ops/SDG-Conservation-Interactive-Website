@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feedback &amp; Program Directory | Life Below Water</title>
+
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+
+    .page-banner {
+      background: linear-gradient(135deg, #03045e 0%, #0077b6 60%, #00b4d8 100%);
+      color: #ffffff;
+      border-radius: 10px;
+      padding: 2.5rem 2rem;
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      margin-top: 10px;
+      
+    }
+    .page-banner::before {
+      content: '🌊';
+      position: absolute;
+      font-size: 8rem;
+      opacity: 0.07;
+      right: 2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+    .page-banner h1 { font-size: 2rem; margin-bottom: 0.4rem; }
+    .page-banner p  { font-size: 1rem; opacity: 0.85; max-width: 620px; margin: 0 auto; }
+
+    /* 2. Section headings */
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #03045e;
+      margin-bottom: 0.4rem;
+    }
+    .section-sub {
+      font-size: 0.92rem;
+      color: #5f6b7a;
+      margin-bottom: 1.5rem;
+    }
+
+    .dir-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.2rem;
+    }
+    .dir-controls label { font-weight: 600; font-size: 0.9rem; }
+    .dir-controls select {
+      padding: 0.5rem 2.5rem 0.5rem 1rem;
+      border: 2px solid #90e0ef;
+      border-radius: 30px;
+      font-size: 0.88rem;
+      background: #ffffff;
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='10' viewBox='0 0 14 10'%3E%3Cpath d='M1 1l6 7 6-7' stroke='%230077b6' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      transition: border-color 0.25s, box-shadow 0.25s;
+    }
+    .dir-controls select:hover,
+    .dir-controls select:focus {
+      border-color: #0077b6;
+      box-shadow: 0 0 0 3px rgba(0,119,182,0.15);
+      outline: none;
+    }
+
+    .programmes-scroll-wrapper {
+      max-height: 520px;
+      overflow-y: auto;
+      padding-right: 6px;
+      scrollbar-width: thin;
+      scrollbar-color: #00b4d8 #caf0f8;
+    }
+    .programmes-scroll-wrapper::-webkit-scrollbar       { width: 6px; }
+    .programmes-scroll-wrapper::-webkit-scrollbar-track { background: #caf0f8; border-radius: 3px; }
+    .programmes-scroll-wrapper::-webkit-scrollbar-thumb { background: #00b4d8; border-radius: 3px; }
+
+    .programmes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.2rem;
+    }
+    .prog-card {
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 18px rgba(0,119,182,0.13);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.28s ease, box-shadow 0.28s ease;
+    }
+    .prog-card:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(0,119,182,0.22); }
+    .prog-card img   { width: 100%; height: 160px; object-fit: cover; display: block; }
+    .prog-card-body  { padding: 1rem; flex: 1; display: flex; flex-direction: column; }
+    .prog-card-body h3 { font-size: 1rem; color: #03045e; margin-bottom: 0.4rem; }
+    .prog-card-body p  { font-size: 0.85rem; color: #5f6b7a; line-height: 1.5; flex: 1; margin-bottom: 0.75rem; }
+    .prog-btn {
+      display: inline-block;
+      align-self: flex-start;
+      padding: 0.5rem 1.3rem;
+      background: #0077b6;
+      color: #ffffff;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
+    }
+    .prog-btn:hover { background: #03045e; transform: translateY(-2px); box-shadow: 0 4px 14px rgba(3,4,94,0.3); }
+
+    /* 6. Divider */
+    .divider { border: none; border-top: 2px solid #caf0f8; margin: 2.5rem 0; }
+
+    /* 7. Ratings section */
+    .ratings-section {
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 18px rgba(0,119,182,0.13);
+      padding: 2rem;
+      margin-bottom: 2.5rem;
+    }
+    .rating-summary { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1.8rem; }
+    .rating-score-big { font-size: 4rem; font-weight: 800; color: #0077b6; line-height: 1; }
+    .rating-score-big span { font-size: 1.5rem; color: #5f6b7a; }
+    .rating-label { font-size: 1.2rem; font-weight: 700; color: #03045e; }
+    .rating-count { font-size: 0.85rem; color: #5f6b7a; }
+    .stars { color: #f4a261; font-size: 1.3rem; letter-spacing: 2px; }
+
+    .reviews-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.2rem;
+    }
+    .review-card {
+      background: #f0f8ff;
+      border-left: 4px solid #00b4d8;
+      border-radius: 0 10px 10px 0;
+      padding: 1.1rem 1.2rem;
+    }
+    .review-card h4 { font-size: 0.95rem; color: #03045e; margin-bottom: 0.35rem; }
+    .review-card p  { font-size: 0.83rem; color: #5f6b7a; line-height: 1.55; margin-bottom: 0.5rem; }
+    .review-card a  { font-size: 0.8rem; color: #0077b6; text-decoration: none; }
+    .review-card a:hover { text-decoration: underline; }
+    .review-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 0.6rem; }
+    .reviewer-info { font-size: 0.78rem; color: #5f6b7a; }
+    .review-rating { font-size: 0.82rem; font-weight: 700; color: #0077b6; background: #caf0f8; padding: 0.2rem 0.6rem; border-radius: 20px; }
+
+    .feedback-form-section {
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 18px rgba(0,119,182,0.13);
+      padding: 2rem;
+      margin-bottom: 2.5rem;
+    }
+    fieldset { border: 2px solid #90e0ef; border-radius: 10px; padding: 1.2rem 1.4rem; margin-bottom: 1.4rem; }
+    legend   { padding: 0.2rem 0.7rem; font-weight: 700; font-size: 0.95rem; color: #0077b6; background: #ffffff; border-radius: 20px; border: 2px solid #90e0ef; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 640px) {
+      .form-row            { grid-template-columns: 1fr; }
+      .programmes-grid     { grid-template-columns: 1fr; }
+    }
+
+    .form-group              { margin-bottom: 1rem; }
+    .form-group label        { display: block; font-size: 0.88rem; font-weight: 600; color: #03045e; margin-bottom: 0.3rem; }
+    .form-group input,
+    .form-group textarea,
+    .form-group select       { width: 100%; padding: 0.6rem 0.9rem; border: 2px solid #d0e8f5; border-radius: 10px; font-size: 0.9rem; font-family: inherit; color: #1a1a2e; background: #ffffff; transition: border-color 0.25s, box-shadow 0.25s; }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus  { outline: none; border-color: #0077b6; box-shadow: 0 0 0 3px rgba(0,119,182,0.12); }
+    .form-group input.error,
+    .form-group textarea.error,
+    .form-group select.error  { border-color: #e63946; box-shadow: 0 0 0 3px rgba(230,57,70,0.1); }
+    .form-group textarea       { resize: vertical; min-height: 100px; }
+
+    .char-counter          { font-size: 0.78rem; color: #5f6b7a; text-align: right; margin-top: 0.25rem; }
+    .char-counter.warn     { color: #e63946; font-weight: 600; }
+    .error-msg             { font-size: 0.78rem; color: #e63946; margin-top: 0.25rem; display: none; }
+    .error-msg.visible     { display: block; }
+
+    .submit-btn {
+      display: block;
+      margin: 0.5rem auto 0;
+      padding: 0.75rem 2.5rem;
+      background: linear-gradient(135deg, #0077b6, #03045e);
+      color: #ffffff;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(3,4,94,0.3); }
+
+    #confirmation-msg {
+      display: none;
+      background: linear-gradient(135deg, #d4f5e9, #a8e6cf);
+      border: 2px solid #27ae60;
+      border-radius: 10px;
+      padding: 1.2rem 1.5rem;
+      margin-top: 1.2rem;
+      color: #1a5c38;
+      font-weight: 600;
+      font-size: 1rem;
+      text-align: center;
+      animation: fadeIn 0.4s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <a href="splash.html">
+            <img src="images/logo.png" alt="Life Below Water Logo" class="logo">
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="AIS.html">AIS</a></li>
+                    <li><a href="profile.html">User Profile</a></li>               
+                    <li><a href="feedback.html" class="active">Feedback & Program Directory</a></li>
+                    <li><a href="team.html">Team Page</a></li>
+                    <li><a href="sitemap.html">Site Map</a></li>
+                </ul>
+            </nav>
+        </header>
+
+  <main id="top">
+
+    <!-- Page Banner -->
+    <div class="page-banner" role="banner">
+      <h1>🌊 Feedback &amp; Programme Directory</h1>
+      <p>Explore ocean-protection opportunities and share your thoughts to help us improve.</p>
+    </div>
+
+    <section aria-labelledby="prog-dir-heading">
+      <h2 class="section-title" id="prog-dir-heading">📋 Programme Directory</h2>
+      <p class="section-sub">Browse SDG 14-related initiatives, campaigns, and volunteer opportunities.</p>
+
+      <!-- Sort / Filter dropdown (decorative — does not reorder) -->
+      <div class="dir-controls">
+        <label for="sort-dropdown">Sort by:</label>
+        <select id="sort-dropdown" aria-label="Sort programmes">
+          <option value="popular">Most Popular</option>
+          <option value="newest">Newest</option>
+          <option value="student">Student-friendly</option>
+          <option value="local">Nearest</option>
+        </select>
+      </div>
+
+      <!-- Scrollable region -->
+      <div class="programmes-scroll-wrapper"
+           role="region"
+           aria-label="Scrollable list of SDG 14 programmes"
+           tabindex="0">
+        <div class="programmes-grid">
+
+          <!-- Card 1 -->
+          <article class="prog-card">
+            <img src="images/Diver collecting plastic waste from the ocean floor.jpeg"
+                 alt="Diver collecting plastic waste from the ocean floor" />
+            <div class="prog-card-body">
+              <h3>Ocean Plastic Clean-Up</h3>
+              <p>Join weekend beach and underwater clean-up drives with local environmental groups.
+                 Every piece of plastic removed directly protects marine wildlife from ingestion and entanglement.</p>
+              <a href="#" class="prog-btn">Get Involved</a>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="prog-card">
+            <img src="images/Coral reef restoration project with divers planting coral fragments.jpeg"
+                 alt="Coral reef restoration project with divers planting coral fragments" />
+            <div class="prog-card-body">
+              <h3>Coral Reef Restoration</h3>
+              <p>Volunteer with marine biologists to plant coral fragments and monitor reef recovery
+                 at threatened sites around the UK coast and overseas conservation zones.</p>
+              <a href="#" class="prog-btn">Learn More</a>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="prog-card">
+            <img src="images/Students attending an ocean literacy workshop in a classroom.jpeg"
+                 alt="Students attending an ocean literacy workshop in a classroom" />
+            <div class="prog-card-body">
+              <h3>Ocean Literacy in Schools</h3>
+              <p>Become a student ambassador and run awareness workshops teaching children about
+                 sustainable fishing, ocean pollution, and what SDG 14 means for their future.</p>
+              <a href="#" class="prog-btn">Join</a>
+            </div>
+          </article>
+
+          <!-- Card 4 -->
+          <article class="prog-card">
+            <img src="images/Community members at a sustainable seafood event.jpeg"
+                 alt="Community members at a sustainable seafood event" />
+            <div class="prog-card-body">
+              <h3>Sustainable Seafood Campaign</h3>
+              <p>Partner with local restaurants to promote sustainable seafood choices, reduce bycatch,
+                 and protect endangered marine species through everyday responsible consumption.</p>
+              <a href="#" class="prog-btn">Learn More</a>
+            </div>
+          </article>
+
+          <!-- Card 5 -->
+          <article class="prog-card">
+            <img src="images/Scientist collecting ocean water samples for environmental research.jpeg"
+                 alt="Scientist collecting ocean water samples for environmental research" />
+            <div class="prog-card-body">
+              <h3>Citizen Science Monitoring</h3>
+              <p>Record ocean temperature, acidity, and wildlife sightings using a simple app.
+                 Your data feeds global databases used by researchers and policymakers worldwide.</p>
+              <a href="#" class="prog-btn">Get Involved</a>
+            </div>
+          </article>
+
+          <!-- Card 6 -->
+          <article class="prog-card">
+            <img src="images/Volunteers planting mangrove saplings along a tropical coastline.jpeg"
+                 alt="Volunteers planting mangrove saplings along a tropical coastline" />
+            <div class="prog-card-body">
+              <h3>Mangrove Planting Initiative</h3>
+              <p>Help restore coastal mangrove forests that buffer storm surges and provide essential
+                 breeding grounds for countless marine species along threatened coastlines.</p>
+              <a href="#" class="prog-btn">Join</a>
+            </div>
+          </article>
+
+        </div><!-- /.programmes-grid -->
+      </div><!-- /.programmes-scroll-wrapper -->
+    </section>
+
+    <hr class="divider" />
+
+    <section class="ratings-section" aria-labelledby="ratings-heading">
+      <h2 class="section-title" id="ratings-heading">⭐ Ratings &amp; Reviews</h2>
+
+      <!-- Overall rating -->
+      <div class="rating-summary">
+        <div>
+          <div class="rating-score-big">8.6<span>/10</span></div>
+          <div class="stars" aria-label="Four and a half stars out of five">★★★★☆</div>
+        </div>
+        <div>
+          <div class="rating-label">Excellent</div>
+          <div class="rating-count">Based on 147 verified reviews</div>
+        </div>
+      </div>
+
+      <!-- Three individual review cards -->
+      <div class="reviews-row">
+
+        <article class="review-card">
+          <h4>10/10 — Truly life-changing</h4>
+          <p>The Ocean Plastic Clean-Up programme completely shifted my perspective on consumption.
+             The team is passionate, organised, and genuinely impactful…</p>
+          <a href="#">See more</a>
+          <div class="review-meta">
+            <span class="reviewer-info">Sarah L. &nbsp;|&nbsp; 12 Jan 2025</span>
+            <span class="review-rating">10/10</span>
+          </div>
+        </article>
+
+        <article class="review-card">
+          <h4>8/10 — Great for students</h4>
+          <p>Joined the Ocean Literacy programme as a volunteer. It's flexible around lectures
+             and the training provided is excellent. Highly recommended for sustainability-focused students…</p>
+          <a href="#">See more</a>
+          <div class="review-meta">
+            <span class="reviewer-info">James K. &nbsp;|&nbsp; 3 Mar 2025</span>
+            <span class="review-rating">8/10</span>
+          </div>
+        </article>
+
+        <article class="review-card">
+          <h4>9/10 — Science made accessible</h4>
+          <p>The Citizen Science Monitoring app is intuitive and the community forums are brilliant.
+             It feels amazing knowing my data contributes to real-world research and policy decisions…</p>
+          <a href="#">See more</a>
+          <div class="review-meta">
+            <span class="reviewer-info">Amara O. &nbsp;|&nbsp; 19 Feb 2025</span>
+            <span class="review-rating">9/10</span>
+          </div>
+        </article>
+
+      </div><!-- /.reviews-row -->
+    </section>
+
+    <hr class="divider" />
+
+    <section class="feedback-form-section" aria-labelledby="form-heading">
+      <h2 class="section-title" id="form-heading">📬 Submit Your Feedback</h2>
+      <p class="section-sub">We value your thoughts. Fill in the form below to help us improve our programmes.</p>
+
+      <form id="feedback-form" novalidate>
+
+        <!-- Fieldset 1: Personal Details -->
+        <fieldset>
+          <legend>Personal Details</legend>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="full-name">Full Name <span aria-hidden="true">*</span></label>
+              <input type="text" id="full-name" name="full-name"
+                     placeholder="e.g. Jane Smith"
+                     autocomplete="name"
+                     aria-required="true" />
+              <span class="error-msg" id="err-name" role="alert">Please enter your full name.</span>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address <span aria-hidden="true">*</span></label>
+              <input type="email" id="email" name="email"
+                     placeholder="e.g. jane@example.com"
+                     autocomplete="email"
+                     aria-required="true" />
+              <span class="error-msg" id="err-email" role="alert">Please enter a valid email address.</span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="telephone">Telephone Number</label>
+              <input type="tel" id="telephone" name="telephone"
+                     placeholder="e.g. +44 7911 123456"
+                     autocomplete="tel" />
+            </div>
+
+            <div class="form-group">
+              <label for="visit-date">Date of Visit / Interest</label>
+              <input type="date" id="visit-date" name="visit-date" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="address">Address</label>
+            <textarea id="address" name="address" rows="2"
+                      placeholder="Your address (optional)"
+                      autocomplete="street-address"></textarea>
+          </div>
+
+        </fieldset>
+
+        <!-- Fieldset 2: Feedback Details -->
+        <fieldset>
+          <legend>Feedback Details</legend>
+
+          <div class="form-row">
+            <!-- Select (popup list) -->
+            <div class="form-group">
+              <label for="programme-select">Programme Interested In <span aria-hidden="true">*</span></label>
+              <select id="programme-select" name="programme-select" aria-required="true">
+                <option value="">— Select a programme —</option>
+                <option value="plastic">Ocean Plastic Clean-Up</option>
+                <option value="coral">Coral Reef Restoration</option>
+                <option value="literacy">Ocean Literacy in Schools</option>
+                <option value="seafood">Sustainable Seafood Campaign</option>
+                <option value="citizen">Citizen Science Monitoring</option>
+                <option value="mangrove">Mangrove Planting Initiative</option>
+              </select>
+              <span class="error-msg" id="err-prog" role="alert">Please select a programme.</span>
+            </div>
+
+            <!-- datetime-local -->
+            <div class="form-group">
+              <label for="pref-datetime">Preferred Date &amp; Time</label>
+              <input type="datetime-local" id="pref-datetime" name="pref-datetime" />
+            </div>
+          </div>
+
+          <!-- Datalist (searchable suggestions) -->
+          <div class="form-group">
+            <label for="hear-about">How did you hear about us?</label>
+            <input type="text" id="hear-about" name="hear-about"
+                   list="referral-list"
+                   placeholder="Start typing or choose…" />
+            <datalist id="referral-list">
+              <option value="University noticeboard">
+              <option value="Social media">
+              <option value="Word of mouth">
+              <option value="Lecturer recommendation">
+              <option value="News article">
+              <option value="SDG 14 website">
+            </datalist>
+          </div>
+
+          <!-- Message textarea with live character counter (JS) -->
+          <div class="form-group">
+            <label for="message">Your Comment / Message <span aria-hidden="true">*</span></label>
+            <textarea id="message" name="message"
+                      placeholder="Share your thoughts, suggestions, or experiences…"
+                      maxlength="500"
+                      rows="5"
+                      aria-required="true"
+                      aria-describedby="char-count err-message"></textarea>
+            <!-- Updated dynamically by JavaScript -->
+            <div class="char-counter" id="char-count" aria-live="polite">500 characters remaining</div>
+            <span class="error-msg" id="err-message" role="alert">
+              Please enter a message (minimum 10 characters).
+            </span>
+          </div>
+
+        </fieldset>
+
+        <button type="submit" class="submit-btn">🌊 Send Feedback</button>
+
+        <!-- Confirmation shown by JS on successful submit -->
+        <div id="confirmation-msg" role="status" aria-live="polite">
+          ✅ Thank you for your feedback! We'll review your message and get back to you soon.
+        </div>
+
+      </form>
+    </section>
+
+  </main>
+
+  <script>
+
+    const messageArea = document.getElementById('message');
+    const charCountEl = document.getElementById('char-count');
+    const MAX_CHARS   = 500;
+
+    messageArea.addEventListener('input', function () {
+      const remaining = MAX_CHARS - this.value.length;
+      charCountEl.textContent = remaining + ' characters remaining';
+      // Warn the user when they are close to the limit
+      charCountEl.classList.toggle('warn', remaining <= 50);
+    });
+
+    function setError(field, errEl, isError) {
+      if (isError) {
+        field.classList.add('error');
+        errEl.classList.add('visible');
+        field.setAttribute('aria-invalid', 'true');
+      } else {
+        field.classList.remove('error');
+        errEl.classList.remove('visible');
+        field.removeAttribute('aria-invalid');
+      }
+    }
+
+    function validateForm() {
+      let isValid = true;
+
+      const nameField = document.getElementById('full-name');
+      const nameErr   = document.getElementById('err-name');
+      if (nameField.value.trim() === '') {
+        setError(nameField, nameErr, true);
+        isValid = false;
+      } else {
+        setError(nameField, nameErr, false);
+      }
+
+      const emailField = document.getElementById('email');
+      const emailErr   = document.getElementById('err-email');
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(emailField.value.trim())) {
+        setError(emailField, emailErr, true);
+        isValid = false;
+      } else {
+        setError(emailField, emailErr, false);
+      }
+
+      const progField = document.getElementById('programme-select');
+      const progErr   = document.getElementById('err-prog');
+      if (progField.value === '') {
+        setError(progField, progErr, true);
+        isValid = false;
+      } else {
+        setError(progField, progErr, false);
+      }
+
+      const msgField = document.getElementById('message');
+      const msgErr   = document.getElementById('err-message');
+      if (msgField.value.trim().length < 10) {
+        setError(msgField, msgErr, true);
+        isValid = false;
+      } else {
+        setError(msgField, msgErr, false);
+      }
+
+      return isValid;
+    }
+
+    document.getElementById('full-name').addEventListener('input', function () {
+      if (this.value.trim() !== '') setError(this, document.getElementById('err-name'), false);
+    });
+    document.getElementById('email').addEventListener('input', function () {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (emailRegex.test(this.value.trim())) setError(this, document.getElementById('err-email'), false);
+    });
+    document.getElementById('programme-select').addEventListener('change', function () {
+      if (this.value !== '') setError(this, document.getElementById('err-prog'), false);
+    });
+    document.getElementById('message').addEventListener('input', function () {
+      if (this.value.trim().length >= 10) setError(this, document.getElementById('err-message'), false);
+    });
+
+    
+    document.getElementById('feedback-form').addEventListener('submit', function (e) {
+      e.preventDefault(); // No server needed
+
+      if (validateForm()) {
+        // Show success confirmation
+        const confirmMsg = document.getElementById('confirmation-msg');
+        confirmMsg.style.display = 'block';
+        confirmMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+        // Reset form and hide message after a delay
+        setTimeout(() => {
+          this.reset();
+          charCountEl.textContent = MAX_CHARS + ' characters remaining';
+          charCountEl.classList.remove('warn');
+          setTimeout(() => { confirmMsg.style.display = 'none'; }, 6000);
+        }, 500);
+
+      } else {
+        // Scroll to and focus the first field with an error
+        const firstErr = this.querySelector('.error');
+        if (firstErr) {
+          firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          firstErr.focus();
+        }
+      }
+    });
+
+    /* ───────────────────────────────────────────────────
+       6. SORT DROPDOWN — wired up (decorative per spec)
+    ─────────────────────────────────────────────────── */
+    document.getElementById('sort-dropdown').addEventListener('change', function () {
+      console.log('Sort selected: ' + this.value);
+      // Card reordering logic can be added here if extended
+    });
+
+  </script>
+
+ <footer>
+            <div class="footer-links">
+                <a href="pageEditor_ST3.html">Page Editor</a>
+                <a href="validation_ST3.html" target="_blank">Validation</a>
+            </div>
+            <div>
+                <p>Developed by Hasaka Perera · w2151932/20241842</p>
+            </div>
+        </footer>
+
+</body>
+</html>

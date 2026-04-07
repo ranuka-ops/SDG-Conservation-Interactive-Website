@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <title>Life Below Water - Home</title>
+        <style>
+        main {
+            background-color: rgba(255,255,255,0.85); 
+            margin: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            flex: 1;
+        }
+        
+        /*comment BY stu1:css for background video*/
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .video-background video {
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); 
+            object-fit: cover;
+        }
+
+        /*  HOME SCREEN Embedded CSS   */
+        
+        /* 1 page styling for headings */
+        .home-section-title {
+            text-align: center;
+            color: #054380;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        /* 2 layout for the cards */
+        .cards-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        /* 3: Styling the individual cards */
+        .mission-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            width: 30%;
+            min-width: 250px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* 4: Grid for the interactive gallery */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        /* Rule 5: Base styling for gallery links */
+        .gallery-item {
+            display: block;
+            background-color: #054380;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            padding: 40px 20px;
+            border-radius: 8px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        /* Rule 6: Hover interaction for the gallery links */
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            background-color: lightsalmon;
+            color: #1A1A1A;
+        }
+        </style>
+    </head>
+    <body>
+        <header>
+            <a href="splash.html">
+            <img src="images/logo.png" alt="Life Below Water Logo" class="logo">
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="home.html" class="active">Home</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="AIS.html">AIS</a></li>
+                    <li><a href="profile.html">User Profile</a></li>               
+                    <li><a href="feedback.html">Feedback & Program Directory</a></li>
+                    <li><a href="team.html">Team Page</a></li>
+                    <li><a href="sitemap.html">Site Map</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main>
+            <div class="video-background">
+                <video autoplay muted loop playsinline>
+                    <source src="images/Underwater_Coral_Reef_Scene_Generation.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <section>
+                <h2 class="home-section-title">Why Life Below Water Matters</h2>
+                <div class="cards-container">
+                    <article class="mission-card">
+                        <h3>The Ocean's Crisis</h3>
+                        <img src="images/ocean-pollution.jpg" alt="Plastic pollution floating in the ocean" style="width: 100%; border-radius: 4px;">
+                        <p>Our oceans cover 70% of the planet, but they are under immense threat from plastic pollution and climate changes
+                        . Protecting marine ecosystems is vital for global survival.</p>
+                        <h4>If we act now:</h4>
+                        <ul>
+                            <li>Marine biodiversity will recover.</li>
+                            <li>Coastal communities will thrive.</li>
+                            <li>Global temperatures will stabilize.</li>
+                        </ul>
+                    </article>
+
+                    <article class="mission-card">
+                        <h3>Student & Community Action</h3>
+                        <img src="images/student-action.jpg" alt="Students picking up trash on a beach" style="width: 100%; border-radius: 4px;">
+                        <p>As university students, we have the power to drive change. From reducing single-use plastics on campus to participating in local cleanups, 
+                            every action counts.</p>
+                        <h4>3 Things You Can Do:</h4>
+                        <ul>
+                            <li>Use reusable water bottles.</li>
+                            <li>Recycle campus waste properly.</li>
+                            <li>Join a local beach cleanup.</li>
+                        </ul>
+                    </article>
+
+                    <article class="mission-card">
+                        <h3>Our Website's Mission</h3>
+                        <img src="images/our-mission.jpg" alt="A healthy coral reef" style="width: 100%; border-radius: 4px;">
+                        <p>This platform is designed to educate, inspire, and track our collective impact on SDG 14.
+                             We aim to turn awareness into measurable, real-world action.</p>
+                        <h4>Platform Goals:</h4>
+                        <ul>
+                            <li>Spread awareness about marine life.</li>
+                            <li>Provide an interactive action simulator.</li>
+                            <li>Connect students with volunteer programs.</li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="home-section-title">Explore Our Research</h2>
+                <div class="gallery-container">
+                    <a href="content_ST1.html" class="gallery-item">
+                        <h3>The State of Our Oceans</h3>
+                        <p>Read Student 1's Report</p>
+                    </a>
+                    <a href="content_ST2.html" class="gallery-item">
+                        <h3>Marine Life in Danger</h3>
+                        <p>Read Student 2's Report</p>
+                    </a>
+                    <a href="content_ST3.html" class="gallery-item">
+                        <h3>How Communities are Helping</h3>
+                        <p>Read Student 3's Report</p>
+                    </a>
+                    <a href="content_ST4.html" class="gallery-item">
+                        <h3>Future Conservation Tech</h3>
+                        <p>Read Student 4's Report</p>
+                    </a>
+                </div>
+            </section>
+
+        </main>
+
+        <footer>
+            <div class="footer-links">
+                <a href="pageEditor_ST1.html">Page Editor</a>
+                <a href="validation_ST1.html" target="_blank">Validation</a>
+            </div>
+            <div>
+                <p>Developed by Thevindu Jayasinghe · w2181773/20250477</p>
+            </div>
+        </footer>
+    </body>
+</html>

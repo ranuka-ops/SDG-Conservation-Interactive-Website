@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <title>Life Below Water - User Profile</title>
+        <style>
+
+            .profile-container{
+                max-width:700px;
+                margin:0 auto;
+                text-align:center;
+            }
+            .progress-container{
+                width:100%;
+                background-color:#ddd;
+                border-radius:20px;
+                margin:20px 0;
+                height:20px;
+                overflow:hidden;
+            }
+            #progress-bar{
+                width:0%;
+                height:100%;
+                background-color:#007DBC; 
+                transition:0.5s ease;
+            }
+            .btn-group{
+                margin-bottom:30px;
+            }
+            button{
+                padding:10px 15px;
+                margin:5px;
+                background-color:#007DBC;
+                color:white;
+                border:none;
+                border-radius:5px;
+                cursor:pointer;
+            }
+            button:hover{
+                background-color:darkcyan;
+            }
+            .output-area{
+                text-align:left;
+                background:#fff;
+                padding:20px;
+                border-radius:8px;
+                border:1px solid #ccc;
+                display:none; 
+            }
+            .step-result{
+                margin-bottom:15px;
+                border-bottom:1px solid #eee;
+                padding-bottom:10px;
+                display:none;
+            }
+
+
+        </style>
+
+    </head>
+   <body>
+        <header>
+            <img src="images/logo.png" alt="Life Below Water Logo" class="logo">
+            
+            <nav>
+                <ul>
+                    <li><a href="home.html" >Home</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="AIS.html">AIS</a></li>
+                    <li><a href="profile.html" class="active">User Profile</a></li>               
+                    <li><a href="feedback.html">Feedback & Program Directory</a></li>
+                    <li><a href="team.html">Team Page</a></li>
+                    <li><a href="sitemap.html">Site Map</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+
+            <!--comment by stu1:place your content here-->
+            <!--intro-->
+
+            
+
+            <div class="profile-container">
+                <h1>Marine Advocate Profile</h1>
+                <p>Help us protect <strong>SDG 14: Life Below Water</strong> by building your supporter profile.</p>
+
+                <div class="progress-container">
+                    <div id="progress-bar"></div>
+                </div>
+                <p id="progress-text">Profile Completion: 0%</p>
+
+                <div class="btn-group">
+                    <button onclick="collectData(1)">Step 1: Personal Details</button>
+                    <button onclick="collectData(2)">Step 2: Interests</button>
+                    <button onclick="collectData(3)">Step 3: Pledges</button>
+                </div>
+
+                <div id="main-output" class="output-area">
+                    <h2>Your Ocean Profile </h2>
+                    
+                    <div id="step1-box" class="step-result">
+                        <h3>Identity</h3>
+                        <p id="res-name"></p>
+                        <p id="res-role"></p>
+                        <p id="res-ocean"></p>
+                    </div>
+
+                    <div id="step2-box" class="step-result">
+                        <h3>Interests</h3>
+                        <p id="res-species"></p>
+                        <p id="res-focus"></p>
+                        <p id="res-alerts"></p>
+                    </div>
+
+                    <div id="step3-box" class="step-result">
+                        <h3>Actions & Goals</h3>
+                        <p id="res-plastic"></p>
+                        <p id="res-seafood"></p>
+                        <p id="res-water"></p>
+                    </div>
+                </div>
+            </div>
+
+            
+
+        </main>
+        <script>
+            let userData ={
+                name: "", role: "", ocean: "",
+                species: "", focus: "", alerts: "",
+                plastic: "", seafood: "", water: ""
+            };
+
+            function collectData(step){
+                if (step ===1){
+                    userData.name =prompt("What is your name?", userData.name) || userData.name;
+                    userData.role =prompt("What is your role? (e.g., Student, Diver)", userData.role) || userData.role;
+                    userData.ocean =prompt("Which ocean are you most connected to?", userData.ocean) || userData.ocean;
+                } else if (step ===2){
+                    userData.species =prompt("Favorite marine species?", userData.species) || userData.species;
+                    userData.focus =prompt("Primary concern? (e.g., Plastic pollution, Overfishing)", userData.focus) || userData.focus;
+                    userData.alerts =prompt("Want marine alerts? (Yes/No)", userData.alerts) || userData.alerts;
+                } else if (step === 3){
+                    userData.plastic =prompt("How many plastic items will you cut weekly?", userData.plastic) || userData.plastic;
+                    userData.seafood =prompt("Will you pledge to sustainable seafood? (Yes/No)", userData.seafood) || userData.seafood;
+                    userData.water =prompt("Water saving goal? (e.g., 10% reduction)", userData.water) || userData.water;
+                }
+                updateProfile();
+            }
+
+            function updateProfile(){
+                let filled= 0;
+                const total = 9;
+
+                for (let key in userData){
+                    if (userData[key] !== ""){
+                        filled++;
+                        document.getElementById("res-" + key).innerText =key.charAt(0).toUpperCase()+ key.slice(1) +": " + userData[key];
+                    }
+                }
+
+                if (filled >0) document.getElementById("main-output").style.display="block";
+
+                if (userData.name || userData.role || userData.ocean) document.getElementById("step1-box").style.display= "block";
+                if (userData.species || userData.focus || userData.alerts) document.getElementById("step2-box").style.display= "block";
+                if (userData.plastic || userData.seafood || userData.water) document.getElementById("step3-box").style.display = "block";
+
+                let percent = Math.round((filled/total)*100);
+                document.getElementById("progress-bar").style.width= percent+"%";
+                document.getElementById("progress-text").innerText= "Profile Completion: "+ percent +"% (" +filled +" of 9 fields)";
+            }
+
+        </script>
+
+        <footer>
+        <div class="footer-links">
+            <a href="pageEditor_ST4.html" target="_blank">Page Editor</a>
+            <a href="validation_ST4.html" target="_blank">Validation</a>
+        </div>
+            <div>
+                <p>Developed by Ranuka Samarasinghe / w2181775 / 20250479</p>
+            </div>
+        </footer>
+    </body>    
+</html>

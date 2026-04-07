@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <title>How Communities are Helping - Life Below Water</title>
+        <style>
+        main {
+            background-color: rgba(255,255,255,0.85); 
+            margin: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            flex: 1;
+        }
+        
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .video-background video {
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); 
+            object-fit: cover;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #054380;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        .cards-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .community-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            width: 30%;
+            min-width: 250px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .action-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        .action-table th, .action-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .action-table th {
+            background-color: #054380;
+            color: white;
+        }
+
+        .action-table tr:hover {
+            background-color: #f5f5f5;
+        }
+        </style>
+    </head>
+    <body>
+        <header>
+            <a href="splash.html">
+                <img src="images/logo.png" alt="Life Below Water Logo" class="logo">
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="content_ST1.html">The State of Our Oceans </a></li>
+                    <li><a href="content_ST2.html">Marine Life in Danger</a></li>
+                    <li><a href="content_ST3.html"  class="active">How Communities are Helping</a></li>
+                    <li><a href="content_ST4.html">Future Conservation Tech</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main>
+            <div class="video-background">
+                <video autoplay muted loop playsinline>
+                    <source src="images/Underwater_Coral_Reef_Scene_Generation.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <section>
+                <h2 class="section-title">How Communities are Helping</h2>
+                
+                <div class="cards-container">
+                    <article class="community-card">
+                        <h3>Local Beach Cleanups</h3>
+                        <img src="images/Volunteers-cleaning-the-beach.jpeg" alt="Volunteers cleaning the beach" style="width: 100%; border-radius: 4px; margin-bottom: 10px;">
+                        <p>Coastal communities organize regular cleanups to prevent plastic waste from entering the ocean and harming marine wildlife.</p>
+                        <h4>Key Benefits:</h4>
+                        <ul>
+                            <li>Immediate removal of plastic.</li>
+                            <li>Prevents microplastics.</li>
+                            <li>Raises community awareness.</li>
+                        </ul>
+                    </article>
+
+                    <article class="community-card">
+                        <h3>Citizen Science</h3>
+                        <img src="images/People-monitoring-marine-life.jpeg" alt="People monitoring marine life" style="width: 100%; border-radius: 4px; margin-bottom: 10px;">
+                        <p>Everyday people are helping scientists by tracking marine species, reporting coral bleaching, and monitoring water quality.</p>
+                        <h4>How they help:</h4>
+                        <ul>
+                            <li>Gathering massive data.</li>
+                            <li>Tracking endangered species.</li>
+                            <li>Spotting pollution early.</li>
+                        </ul>
+                    </article>
+
+                    <article class="community-card">
+                        <h3>Sustainable Seafood</h3>
+                        <img src="images/Traditional-sustainable-fishing.jpeg" alt="Traditional, sustainable fishing" style="width: 100%; border-radius: 4px; margin-bottom: 10px;">
+                        <p>By choosing local, responsibly caught seafood, communities help reduce the pressure of overfishing on vulnerable ecosystems.</p>
+                        <h4>What it supports:</h4>
+                        <ul>
+                            <li>Protects fish populations.</li>
+                            <li>Supports local fishermen.</li>
+                            <li>Reduces harmful bycatch.</li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+
+            <section style="margin-top: 40px;">
+                <h2 class="section-title">Community Impact At A Glance</h2>
+                <table class="action-table">
+                    <thead>
+                        <tr>
+                            <th>Community Action</th>
+                            <th>Target Threat</th>
+                            <th>Direct Impact on SDG 14</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Plastic-Free Campaigns</td>
+                            <td>Marine Pollution</td>
+                            <td>Reduces land-based trash entering the ocean ecosystems.</td>
+                        </tr>
+                        <tr>
+                            <td>Mangrove Replanting</td>
+                            <td>Habitat Destruction</td>
+                            <td>Restores natural fish nurseries and protects shorelines.</td>
+                        </tr>
+                        <tr>
+                            <td>Eco-Tourism Support</td>
+                            <td>Unregulated Tourism</td>
+                            <td>Funds coral conservation and funds local clean-energy initiatives.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+        </main>
+
+        <footer>
+            <div class="footer-links">
+                <a href="pageEditor_ST3.html" target="_blank">Page Editor</a>
+                <a href="validation_ST3.html" target="_blank">Validation</a>
+            </div>
+            <div>
+                <p>Developed by Hasaka Perera w2151932/20241842</p> 
+            </div>
+        </footer>
+    </body>
+</html>

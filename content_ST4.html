@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Life Below Water - Future Conservation Tech</title>
+    <style>
+        .content-container{
+            max-width:1000px;
+            margin:0 auto;
+            padding:20px 5%;
+        }
+
+        .content-hero{
+            background:linear-gradient(160deg, #03045e 0%, #0077b6 50%, #00b4d8 100%);
+            border-radius:16px;
+            padding:60px 40px;
+            margin-bottom:40px;
+            text-align:center;
+            color: white;
+            box-shadow:0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .content-hero h1{
+            font-size:2.4rem;
+            margin-bottom:12px;
+            text-shadow:0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .internal-nav{
+            background:linear-gradient(135deg, #003f6b 0%, #0077b6 100%);
+            border-radius:12px;
+            padding:20px 28px;
+            margin-bottom:40px;
+        }
+
+        .internal-nav h2{
+            color: #90e0ef;
+            font-size:0.85rem;
+            letter-spacing:0.12em;
+            text-transform:uppercase;
+            margin-bottom:12px;
+        }
+
+        .internal-nav ul{
+            list-style:none;
+            padding:0;
+            margin:0;
+            display:flex;
+            flex-wrap:wrap;
+            gap:10px;
+        }
+
+        .internal-nav ul li a{
+            color: #caf0f8;
+            text-decoration:none;
+            font-size:0.92rem;
+            padding:6px 14px;
+            border:1px solid rgba(144, 224, 239, 0.4);
+            border-radius:20px;
+            transition:background 0.2s ease, color 0.2s ease;
+        }
+
+        .internal-nav ul li a:hover{
+            background: rgba(144, 224, 239, 0.2);
+            color: #ffffff;
+        }
+
+        .stat-bar{
+            display:flex;
+            flex-wrap:wrap;
+            gap:20px;
+            justify-content:center;
+            margin-bottom:50px;
+        }
+
+        .stat-item{
+            background: white;
+            border-radius:12px;
+            padding:22px 20px;
+            text-align:center;
+            box-shadow:0 4px 15px rgba(0, 119, 182, 0.15);
+            flex:1;
+            min-width:140px;
+            border-top:4px solid #0077b6;
+        }
+
+        .stat-item .number{
+            font-size:1.8rem;
+            font-weight:700;
+            color: #0077b6;
+            display:block;
+        }
+
+        .stat-item .label{
+            font-size:0.85rem;
+            color: #555;
+            margin-top:4px;
+        }
+
+        .content-section{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:40px;
+            align-items:center;
+            margin-bottom:60px;
+            padding-bottom:40px;
+            border-bottom:1px solid #e0f4fb;
+        }
+
+        .content-section.reverse{
+            direction: rtl; 
+        }
+
+        .content-section.reverse > * {
+            direction: ltr; 
+        }
+
+        .content-section:last-of-type {
+            border-bottom: none;
+        }
+
+        .content-section img{
+            width: 100%;
+            border-radius: 14px;
+            box-shadow: 0 8px 30px rgba(0, 64, 128, 0.2);
+            border: 3px solid #caf0f8;
+        }
+
+        .content-section h2{
+            font-size: 1.6rem;
+            color: #03045e;
+            margin-bottom: 14px;
+        }
+
+        .content-section p{
+            color: #444;
+            line-height: 1.75;
+            margin-bottom: 12px;
+        }
+
+        .top{
+            text-align: Center; 
+            margin-top: 50px;
+            margin-bottom: 30px;
+        }
+
+        .top a{
+            text-decoration: none;
+            color: #007DBC; 
+            font-weight: bold;
+            padding: 10px 24px;
+            border: 2px solid #007DBC;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .top a:hover{
+            background-color: #007DBC;
+            color: white;
+        }
+
+    </style>
+</head>
+<body id="top">
+
+    <header>
+        <img src="images/logo.png" alt="Life Below Water Logo" class="logo">
+        <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="content_ST1.html">The State of Our Oceans </a></li>
+                    <li><a href="content_ST2.html">Marine Life in Danger</a></li>
+                    <li><a href="content_ST3.html">How Communities are Helping</a></li>
+                    <li><a href="content_ST4.html" class="active">Future Conservation Tech</a></li>
+                </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="content-container">
+            
+            <div class="content-hero">
+                <h1>Future Conservation Tech</h1>
+                <p>Innovative solutions protecting life below water</p>
+            </div>
+
+            <nav class="internal-nav">
+                <h2>Page Contents</h2>
+                <ul>
+                    <li><a href="#auvs">Autonomous Vehicles (AUVs)</a></li>
+                    <li><a href="#ai-monitoring">AI Reef Monitoring</a></li>
+                    <li><a href="#3d-printing">3D Printed Reefs</a></li>
+                    <li><a href="#satellite-tracking">Satellite Tracking</a></li>
+                </ul>
+            </nav>
+
+            <div class="stat-bar">
+                <div class="stat-item">
+                    <span class="number">6000m</span>
+                    <span class="label">Max AUV Dive Depth</span>
+                </div>
+                <div class="stat-item">
+                    <span class="number">24/7</span>
+                    <span class="label">Satellite Monitoring</span>
+                </div>
+                <div class="stat-item">
+                    <span class="number">1000s</span>
+                    <span class="label">Images processed by AI</span>
+                </div>
+            </div>
+
+            <section id="auvs" class="content-section">
+                <img src="images/auv.jpg" alt="An Autonomous Underwater Vehicle scanning the ocean floor">
+                <div>
+                    <h2>Autonomous Underwater Vehicles (AUVs)</h2>
+                    <p>AUVs are revolutionizing how we map the seafloor and monitor deep-sea ecosystems. These untethered robots can dive deeper and stay submerged longer than human divers, collecting high-resolution oceanographic data without putting humans at risk.</p>
+                </div>
+            </section>
+
+            <section id="ai-monitoring" class="content-section reverse">
+                <img src="images/ai-reef.jpg" alt="AI interface identifying various fish and coral species">
+                <div>
+                    <h2>AI and Machine Learning in Reef Monitoring</h2>
+                    <p>Artificial Intelligence is being trained to analyze thousands of underwater photographs in minutes. By identifying coral bleaching and specific fish species, AI helps marine biologists track the health of ecosystems with unprecedented speed and accuracy.</p>
+                </div>
+            </section>
+
+            <section id="3d-printing" class="content-section">
+                <img src="images/3d-coral.jpg" alt="A 3D printed terracotta artificial reef structure underwater">
+                <div>
+                    <h2>3D Printed Coral Reefs</h2>
+                    <p>To combat habitat loss, conservationists are deploying 3D-printed structures made of sustainable materials like terracotta. These artificial reefs provide a textured foundation for coral polyps to attach to and grow, accelerating reef restoration.</p>
+                </div>
+            </section>
+
+            <section id="satellite-tracking" class="content-section reverse">
+                <img src="images/satellite-tracking.jpg" alt="Global ocean map with highlighted paths showing the real-time satellite tracking of sharks and whales">
+                <div>
+                    <h2>Satellite Tracking & Big Data</h2>
+                    <p>Satellites are now used to track the movements of endangered marine megafauna like sharks and whales. Furthermore, satellite data helps authorities detect illegal, unreported, and unregulated (IUU) fishing vessels via their communication signals.</p>
+                </div>
+            </section>
+
+        </div>
+        <p class="top"><a href="#top">Go Top</a></p>
+    </main>
+
+
+    <footer>
+        <div class="footer-links">
+            <a href="pageEditor_ST4.html" target="_blank">Page Editor</a>
+            <a href="validation_ST4.html" target="_blank">Validation</a>
+        </div>
+        <div>
+            <p>Developed by Ranuka Samarasinghe / w2181775 / 20250479</p>
+        </div>
+    </footer>
+</body>
+</html>

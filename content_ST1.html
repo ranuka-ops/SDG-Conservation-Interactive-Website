@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Student 1 The State of Our Oceans -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <title>The State of Our Oceans Life Below Water</title>
+
+        <style>
+            .internal-nav {
+                background: #046ca4;
+                border-radius: 12px;
+                padding: 20px 28px;
+                margin-bottom: 40px;
+            }
+
+            .internal-nav h2 {
+                color: #90e0ef;
+                font-size: 0.85rem;
+                letter-spacing: 0.12em;
+                margin-bottom: 12px;
+            }
+
+            .internal-nav ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .internal-nav ul li a {
+                color: #caf0f8;
+                text-decoration: none;
+                font-size: 0.92rem;
+                padding: 6px 14px;
+                border: 1px solid rgba(144, 224, 239, 0.4);
+                border-radius: 20px;
+            }
+
+            .internal-nav ul li a:hover {
+                background: rgba(144, 224, 239, 0.2);
+                color: white;
+            }
+
+            .content-hero {
+                position: relative;
+                background: linear-gradient(160deg, #03045e 0%, #0077b6 50%, #00b4d8 100%);
+                border-radius: 16px;
+                padding: 60px 40px;
+                margin-bottom: 50px;
+                overflow: hidden;
+                text-align: center;
+                color: white;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+                color: #90e0ef;
+                max-width: 600px;
+                margin: 0 auto;
+                line-height: 1.6;
+            }
+
+            .stat-bar {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+                justify-content: center;
+                margin-bottom: 50px;
+            }
+
+            .stat-item {
+                background: rgb(219, 238, 250);
+                border-radius: 12px;
+                padding: 22px 30px;
+                text-align: center;
+                flex: 1;
+                min-width: 100px;
+                border-top: 4px solid #0077b6;
+            }
+
+            .number {
+                font-size: 2rem;
+                font-weight: 700;
+                color: #0077b6;
+                display: block;
+            }
+
+            .label {
+                font-size: 0.85rem;
+                color: #555;
+                margin-top: 4px;
+            }
+
+            .content-section {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+                align-items: center;
+                margin-bottom: 60px;
+                padding-bottom: 50px;
+                margin-right: 10px;
+                margin-left: 10px;
+                
+            }
+
+            .content-section img {
+                width: 100%;
+                border-radius: 14px;
+            }
+
+            .content-section h2 {
+                font-size: 1.6rem;
+                color: #03045e;
+                margin-bottom: 14px;
+            }
+
+            .content-section p {
+                color: #444;
+                line-height: 1.75;
+                margin-bottom: 12px;
+            }
+
+            .go-top {
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                background: #0077b6;
+                color: white;
+                border: none;
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: background 0.2s ease, transform 0.2s ease;
+            }
+
+            .go-top:hover {
+                background: #023e8a;
+                transform: translateY(-3px);
+            }
+            .callout {
+                background: lightblue;
+                border-left: 5px solid #0077b6;
+                border-radius: 8px;
+                padding: 20px 24px;
+                margin: 20px 0;
+                color: #03045e;
+                font-style: italic;
+                line-height: 1.7;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <!-- comment by stu1: replace class:active to your page on nav bar to highlight your page -->
+            <a href="splash.html">
+                <img src="images/logo.png" alt="Life Below Water website logo" class="logo">
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="content_ST1.html" class="active">The State of Our Oceans </a></li>
+                    <li><a href="content_ST2.html">Marine Life in Danger</a></li>
+                    <li><a href="content_ST3.html">How Communities are Helping</a></li>
+                    <li><a href="content_ST4.html">Future Conservation Tech</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main id="top">
+            <div class="content-hero">
+                <h1>The State of Our Oceans</h1>
+                <p class="subtitle">
+                    Our oceans cover 71% of the Earth's surface and support all life on our planet.
+                    Yet today they face threats more serious than ever before.
+                </p>
+            </div>
+        <!--inter nav-->
+            <nav class="internal-nav" aria-label="Page sections">
+                <h2>JUMP TO A SECTION</h2>
+                <ul>
+                    <li><a href="#why-oceans-matter">Why Oceans Matter</a></li>
+                    <li><a href="#pollution">Plastic Pollution</a></li>
+                    <li><a href="#warming">Ocean Warming</a></li>
+                    <li><a href="#overfishing">Overfishing</a></li>
+                    <li><a href="#what-we-can-do">What We Can Do</a></li>
+                </ul>
+            </nav>
+            <div class="stat-bar">
+                <div class="stat-item">
+                    <span class="number">71%</span>
+                    <span class="label">of Earth covered by ocean</span>
+                </div>
+                <div class="stat-item">
+                    <span class="number">8M</span>
+                    <span class="label">tonnes of plastic enter oceans yearly</span>
+                </div>
+                <div class="stat-item">
+                    <span class="number">1°C</span>
+                    <span class="label">average sea temperature rise since 1900</span>
+                </div>
+                <div class="stat-item">
+                    <span class="number">90%</span>
+                    <span class="label">of large fish populations depleted</span>
+                </div>
+            </div>
+            <!-- Section 1: Why Oceans Matter -->
+            <div id="why-oceans-matter" >
+                <div class="content-section">
+                    <img
+                        src="images/arial-ocean.jpg"
+                        alt="Aerial view of a clear blue ocean stretching to the horizon"
+                        width="600" height="400"
+                    >
+                    <div>
+                        <h2>Why Oceans Matter</h2>
+                        <p>
+                            The ocean is often called the "lungs of the Earth." It produces over
+                            <strong>50% of the world's oxygen</strong> and absorbs roughly a third
+                            of the carbon dioxide humans produce. Without healthy oceans, life on
+                            land would not survive.
+                        </p>
+                        <p>
+                            Oceans also regulate our climate, supply food to billions of people,
+                            and support a vast web of species — from microscopic plankton to
+                            blue whales. SDG 14 (Life Below Water) exists because keeping oceans
+                            healthy is not optional — it is essential.
+                        </p>
+                        <div class="callout">
+                            "The ocean is the cornerstone of Earth's life support system. It shapes
+                            climate, weather, and the chemical composition of the atmosphere."
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Section 2: Plastic Pollution -->
+            <div id="pollution">
+                <div class="content-section ">
+                    <img
+                        src="images/ocean-pollution.jpg"
+                        alt="Plastic waste and bottles washed up on a beach"
+                        width="600" height="400"
+                    >
+                    <div>
+                        <h2>Plastic Pollution</h2>
+                        <p>
+                            Every minute, the equivalent of a full rubbish truck of plastic enters
+                            our oceans. Most plastic does not biodegrade — it breaks into
+                            <strong>microplastics</strong>, tiny particles that enter the food chain
+                            and have been found in fish, seabirds, and even human blood.
+                        </p>
+                        <p>Key facts:</p>
+                        <ul>
+                            <li>Over <strong>1 million seabirds</strong> and 100,000 marine mammals die from plastic pollution each year.</li>
+                            <li>There are five large <strong>"garbage patches"</strong> in the world's oceans — the largest is twice the size of Texas.</li>
+                            <li>Single-use plastics — straws, bags, bottles — make up the majority of ocean plastic.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Section 3: Ocean Warming -->
+            <div id="warming">
+                <div class="content-section">
+                    <img src="images/oceanacidification.webp" alt="Bleached coral reef showing the effects of rising sea temperatures" width="600" height="400">
+                    <div>
+                        <h2>Ocean Warming and Acidification</h2>
+                        <p>
+                            Oceans absorb more than <strong>90% of excess heat</strong> trapped by
+                            greenhouse gases. This causes sea temperatures to rise, disrupting
+                            ecosystems that took millions of years to evolve.
+                        </p>
+                        <p>
+                            When oceans absorb CO2, they become more acidic — a process called
+                            <strong>ocean acidification</strong>. This dissolves the shells of
+                            crabs, oysters, and corals, collapsing the food web from the bottom up.
+                        </p>
+                        <ul>
+                            <li><strong>50% of coral reefs</strong> have been lost in the last 30 years due to bleaching.</li>
+                            <li>Sea levels are rising at over <strong>3mm per year</strong>, threatening coastal communities.</li>
+                            <li>Warmer oceans produce stronger, more destructive storms and hurricanes.</li>
+                        </ul>
+                        <div class="callout">
+                            Coral reefs support 25% of all marine life despite covering less than
+                            1% of the ocean floor. Their loss would be catastrophic.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Section 4: Overfishing -->
+            <div id="overfishing" class="section-wrapper">
+                <div class="content-section ">
+                    <img
+                        src="images/overfishing.jpg"
+                        alt="Commercial fishing nets full of fish being hauled onto a vessel"
+                        width="600" height="400"
+                    >
+                    <div>
+                        <h2>Overfishing</h2>
+                        <p>
+                            Humans remove fish from the sea faster than populations can reproduce.
+                            Today, <strong>more than 1 in 3</strong> fish stocks are harvested at
+                            biologically unsustainable levels, according to the UN Food and
+                            Agriculture Organisation.
+                        </p>
+                        <p>
+                            Industrial fishing fleets use methods like <strong>bottom trawling</strong>
+                            — dragging enormous nets across the seabed — which destroys habitats
+                            and catches thousands of non-target species (called "bycatch"), including
+                            dolphins, turtles, and sharks.
+                        </p>
+                        <ul>
+                            <li>Around <strong>3 billion people</strong> depend on seafood as their primary protein source.</li>
+                            <li>If current trends continue, some species could collapse entirely within our lifetime.</li>
+                            <li>Sustainable fishing practices can allow fish stocks to recover within years.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <a href="#top" class="go-top" aria-label="Go back to top of page">↑</a>
+        <footer>
+            <div class="footer-links">
+                <a href="pageEditor_ST1.html">Page Editor</a>
+                <a href="validation_ST1.html" target="_blank">Validation</a>
+                
+            </div>
+            <div>
+                <p>Developed by Thevindu Jayasinghe · w2181773/20250477</p>
+            </div>
+        </footer>
+
+    </body>
+</html>

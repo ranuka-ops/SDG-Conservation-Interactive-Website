@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life Below Water - Gallery</title>
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* color palet for main */
+        .gallery-main {
+            background-color: white;
+            margin: 20px auto;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 1000px;
+            font-family: 'Georgia', serif;
+        }
+
+        .gallery-title {
+            text-align: center;
+            color: #008080;
+            margin-bottom: 30px;
+        }
+
+        /* Grid layout */
+        .thumbnail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        /* Rule 3: Thumbnail styling */
+        .thumb-card {
+            background: lightblue;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease; 
+        }
+
+        .thumb-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .js-hover-effect {
+            border-color: #008080;
+            box-shadow: 0 4px 12px rgba(0, 128, 128, 0.3);
+            transform: scale(1.02);
+        }
+
+        .modal-overlay {
+            display: none; 
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Content Box */
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+        }
+
+        .modal-content img {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+
+        /* User Customization Controls*/
+        .customization-controls {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #ccc;
+        }
+        
+        .customization-controls button {
+            padding: 8px 12px;
+            margin: 0 5px;
+            cursor: pointer;
+            background-color: #054380;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="splash.html">
+        <img src="images/logo.png" alt="Life Below Water Logo" class="logo">
+        </a>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="gallery.html" class="active">Gallery</a></li>
+                <li><a href="AIS.html">AIS</a></li>
+                <li><a href="profile.html">User Profile</a></li>               
+                <li><a href="feedback.html">Feedback & Program Directory</a></li>
+                <li><a href="team.html">Team Page</a></li>
+                <li><a href="sitemap.html">Site Map</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="gallery-main">
+        <h2 class="gallery-title">Marine Life & Conservation Gallery</h2>
+        
+        <div class="thumbnail-grid" id="galleryGrid">
+            </div>
+    </main>
+
+    <div class="modal-overlay" id="extendedView">
+        <div class="modal-content" id="modalBox">
+            <button class="close-btn" id="closeModal">&times;</button>
+            <h3 id="modalTitle">Title</h3>
+            <img id="modalImage" src="Extended-View-Image.jpg" alt="Extended-View-Image">
+            <p id="modalDesc">Description goes here.</p>
+            
+            <div class="customization-controls">
+                <p><strong>Customize View:</strong></p>
+                <button id="btnColorTheme">Toggle Dark Mode</button>
+                <button id="btnFontStyle">Change Font Style</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="pageEditor_ST1.html">Page Editor</a>
+            <a href="validation_ST1.html" target="_blank">Validation</a>
+        </div>
+        <div>
+            <p>Developed by Thevindu Jayasinghe · w2181773/20250477</p>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Data Structure: Array of objects containing gallery info. 
+        // This makes it easy to explain in a viva how data is separated from structure.
+        const galleryData = [
+            {
+                id: 1,
+                title: "Coral Reef Bleaching",
+                thumb: "images/oceanacidification.webp", 
+                full: "images/our-mission.jpg",
+                desc: "Rising ocean temperatures cause coral reefs to expel the symbiotic algae living in their tissues, turning them completely white."
+            },
+            {
+                id: 2,
+                title: "Ocean Plastic Pollution",
+                thumb: "images/ocean-pollution.jpg",
+                full: "images/plastic.jpg",
+                desc: "Millions of tons of plastic enter the ocean each year, devastating marine ecosystems and endangering wildlife like sea turtles and seabirds."
+            },
+            {
+                id: 3,
+                title: "Sustainable Fishing",
+                thumb: "images/overfishing.jpg",
+                full: "images/sustain.jpg",
+                desc: "Practices that leave enough fish in the ocean, respecting habitats and ensuring people who depend on fishing can maintain their livelihoods."
+            },
+            {
+                id: 4,
+                title: "Mangrove Restoration",
+                thumb: "images/mangrove.webp",
+                full: "images/restore.webp",
+                desc: "Mangroves are crucial coastal ecosystems. Restoring them helps protect coastlines from erosion and provides a safe nursery for marine life."
+            }
+        ];
+
+        // 2. Select DOM Elements
+        const galleryGrid = document.getElementById('galleryGrid');
+        const modalOverlay = document.getElementById('extendedView');
+        const closeModalBtn = document.getElementById('closeModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalImage = document.getElementById('modalImage');
+        const modalDesc = document.getElementById('modalDesc');
+        const modalBox = document.getElementById('modalBox');
+
+        // Customization Buttons
+        const btnColorTheme = document.getElementById('btnColorTheme');
+        const btnFontStyle = document.getElementById('btnFontStyle');
+
+        // 3. Generate Gallery Thumbnails Dynamically
+        galleryData.forEach(item => {
+            // Create container for the card
+            let card = document.createElement('div');
+            card.className = 'thumb-card';
+            
+            // Add image and title
+            card.innerHTML = `
+                <img src="${item.thumb}" alt="${item.title}">
+                <h4>${item.title}</h4>
+            `;
+
+            // Hover Interactivity (JavaScript required by specification) 
+            card.addEventListener('mouseenter', () => {
+                card.classList.add('js-hover-effect');
+            });
+            card.addEventListener('mouseleave', () => {
+                card.classList.remove('js-hover-effect');
+            });
+
+            // Click-to-expand Interactivity [cite: 257]
+            card.addEventListener('click', () => {
+                openModal(item);
+            });
+
+            galleryGrid.appendChild(card);
+        });
+
+        // 4. Modal Functions
+        function openModal(data) {
+            modalTitle.textContent = data.title;
+            modalImage.src = data.full;
+            modalImage.alt = data.title;
+            modalDesc.textContent = data.desc;
+            
+            // Display the modal [cite: 258]
+            modalOverlay.style.display = 'flex'; 
+        }
+
+        // Close interaction [cite: 264]
+        closeModalBtn.addEventListener('click', () => {
+            modalOverlay.style.display = 'none';
+        });
+
+        // Close if user clicks outside the modal content box
+        modalOverlay.addEventListener('click', (e) => {
+            if(e.target === modalOverlay) {
+                modalOverlay.style.display = 'none';
+            }
+        });
+
+        // 5. User Customization Logic [cite: 279]
+        let isDarkMode = false;
+        btnColorTheme.addEventListener('click', () => {
+            isDarkMode = !isDarkMode;
+            if (isDarkMode) {
+                modalBox.style.backgroundColor = '#1A1A1A';
+                modalBox.style.color = '#F4F9FF';
+                closeModalBtn.style.color = '#F4F9FF';
+            } else {
+                modalBox.style.backgroundColor = 'white';
+                modalBox.style.color = '#333';
+                closeModalBtn.style.color = '#333';
+            }
+        });
+
+        let isAltFont = false;
+        btnFontStyle.addEventListener('click', () => {
+            isAltFont = !isAltFont;
+            if (isAltFont) {
+                modalBox.style.fontFamily = "'Courier New', Courier, monospace";
+            } else {
+                modalBox.style.fontFamily = "'Georgia', serif";
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <title>Life Below Water - Site Map</title>
+        <style>
+            .sitemap-container{
+                max-width:900px;
+                margin:0 auto;
+                text-align:center;
+                padding:20px 0;
+            }
+            svg{
+                width:100%;
+                height:auto;
+                display:block;
+                background-color:white;
+                border:1px solid #ccc;
+                border-radius:8px;
+                padding:20px;
+            }
+            .branch{
+                stroke: #1A1A1A;
+                stroke-width:2;
+                fill:none;
+            }
+            .node{
+                fill:#007DBC;
+                stroke:#005a87;
+                stroke-width:2;
+                transition:all 0.3s ease;
+            }
+            .node-text{
+                fill: white;
+                font-family:'Segoe UI', Tahoma, sans-serif;
+                font-size:14px;
+                font-weight:bold;
+                text-anchor:middle;
+                alignment-baseline:middle;
+                pointer-events:none;
+            }
+            .svg-link{
+                outline:none;
+            }
+
+            .svg-link:hover .node{
+                fill:darkcyan;
+                stroke:#7DF9FF;
+                cursor:pointer;
+            }
+            .svg-link:focus .node{
+                fill:darkcyan;
+                stroke:#1A1A1A;
+                stroke-width:4;
+            }
+        </style>
+
+    </head>
+   <body>
+        <header>
+            <img src="images/logo.png" alt="Life Below Water Logo" class="logo">
+            
+            <nav>
+                <ul>
+                    <li><a href="home.html" >Home</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="AIS.html">AIS</a></li>
+                    <li><a href="profile.html">User Profile</a></li>               
+                    <li><a href="feedback.html">Feedback & Program Directory</a></li>
+                    <li><a href="team.html">Team Page</a></li>
+                    <li><a href="sitemap.html" class="active">Site Map</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+
+            <!--comment by stu1:place your content here-->
+            <!--intro-->
+
+
+            <div class="sitemap-container">
+                <h1>Website Structure</h1>
+                <p>Use this interactive sitemap to navigate the Life Below Water website. Click any box to visit that page.</p>
+
+                <svg viewBox="0 0 800 400" role="img" aria-label="Interactive Sitemap">
+                    
+                    <line x1="400" y1="50" x2="400" y2="100" class="branch"/>
+                    <line x1="100" y1="170" x2="700" y2="170" class="branch"/>
+                    <line x1="400" y1="140" x2="400" y2="170" class="branch"/>
+                    
+                    <line x1="100" y1="170" x2="100" y2="220" class="branch"/>
+                    <line x1="220" y1="170" x2="220" y2="220" class="branch"/>
+                    <line x1="340" y1="170" x2="340" y2="220" class="branch"/>
+                    <line x1="460" y1="170" x2="460" y2="220" class="branch"/>
+                    <line x1="580" y1="170" x2="580" y2="220" class="branch"/>
+                    <line x1="700" y1="170" x2="700" y2="220" class="branch"/>
+
+
+                    <a href="splash.html" class="svg-link" tabindex="0">
+                        <title>Go to Splash Screen</title>
+                        <rect x="340" y="10" width="120" height="40" rx="8" ry="8" class="node"/>
+                        <text x="400" y="32" class="node-text">Splash Screen</text>
+                    </a>
+
+                    <a href="home.html" class="svg-link" tabindex="0">
+                        <title>Go to Home Page</title>
+                        <rect x="340" y="100" width="120" height="40" rx="8" ry="8" class="node"/>
+                        <text x="400" y="122" class="node-text">Home</text>
+                    </a>
+
+                    <a href="gallery.html" class="svg-link" tabindex="0">
+                        <title>Go to Gallery</title>
+                        <rect x="45" y="220" width="110" height="40" rx="8" ry="8" class="node"/>
+                        <text x="100" y="242" class="node-text">Gallery</text>
+                    </a>
+
+                    <a href="ais.html" class="svg-link" tabindex="0">
+                        <title>Go to AIS</title>
+                        <rect x="165" y="220" width="110" height="40" rx="8" ry="8" class="node"/>
+                        <text x="220" y="242" class="node-text">AIS</text>
+                    </a>
+
+                    <a href="profile.html" class="svg-link" tabindex="0">
+                        <title>Go to User Profile</title>
+                        <rect x="285" y="220" width="110" height="40" rx="8" ry="8" class="node"/>
+                        <text x="340" y="242" class="node-text">User Profile</text>
+                    </a>
+
+                    <a href="feedback.html" class="svg-link" tabindex="0">
+                        <title>Go to Feedback</title>
+                        <rect x="405" y="220" width="110" height="40" rx="8" ry="8" class="node"/>
+                        <text x="460" y="242" class="node-text">Feedback</text>
+                    </a>
+
+                    <a href="team.html" class="svg-link" tabindex="0">
+                        <title>Go to Team Page</title>
+                        <rect x="525" y="220" width="110" height="40" rx="8" ry="8" class="node"/>
+                        <text x="580" y="242" class="node-text">Team Page</text>
+                    </a>
+
+                    <a href="sitemap.html" class="svg-link" tabindex="0">
+                        <title>Go to Sitemap</title>
+                        <rect x="645" y="220" width="110" height="40" rx="8" ry="8" class="node"/>
+                        <text x="700" y="242" class="node-text">Site Map</text>
+                    </a>
+
+                </svg>
+            </div>
+
+        </main>
+
+        <footer>
+        <div class="footer-links">
+            <a href="pageEditor_ST4.html" target="_blank">Page Editor</a>
+            <a href="validation_ST4.html" target="_blank">Validation</a>
+        </div>
+            <div>
+                <p>Developed by Ranuka Samarasinghe / w2181775 / 20250479</p>
+            </div>
+        </footer>
+    </body>    
+</html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Page</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        
+.logo{
+    height: 50px;
+    width: auto;
+    
+}
+nav ul{
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    gap: 25px;
+    
+}
+nav ul a{
+    text-decoration: none;
+    color:whitesmoke;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    transition: 0.3s;
+    font-weight: 500;
+}
+nav ul a:hover{
+    color:lightsalmon;
+}
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    color: #1A1A1A;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #F4F9FF;
+}
+main{
+    background-color: whitesmoke;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    flex: 1;
+}
+
+.active {
+    color:darkblue;           
+    border-bottom: 3px solid darkblue;
+    font-weight: bold;
+}
+/* STUDENT 3 - feedback&program Directory PAGE */
+
+/* Scrollable program section */
+.program-container {
+    max-height: 400px;
+    overflow-y: auto;
+    display: flex;
+    gap: 20px;
+    padding: 10px;
+}
+
+/* Program cards */
+.program-card {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    min-width: 250px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.program-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Buttons */
+.program-card button {
+    background-color: #007DBC;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.program-card button:hover {
+    background-color: lightsalmon;
+}
+
+/* Dropdown */
+.sort-dropdown {
+    margin: 10px 0;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+/* REVIEWS SECTION */
+
+.review-container {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.review-card {
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    flex: 1;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* feedback&program Directory FORM */
+
+form {
+    margin-top: 20px;
+}
+
+fieldset {
+    border: 2px solid #007DBC;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    padding: 15px;
+}
+
+legend {
+    font-weight: bold;
+    color: #007DBC;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+input:focus, textarea:focus {
+    border-color: #007DBC;
+    outline: none;
+}
+
+/* Error message */
+.error {
+    color: red;
+    font-size: 13px;
+}
+
+/* TEAM PAGE */
+
+.team-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+/* Team member card */
+.team-member {
+    position: relative;
+    background: white;
+    border-radius: 10px;
+    text-align: center;
+    padding: 15px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+/* Image */
+.team-member img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* Hover effect */
+.team-member:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Hidden details */
+.member-details {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 125, 188, 0.9);
+    color: white;
+    padding: 10px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+/* Show on hover */
+.team-member:hover .member-details {
+    max-height: 200px;
+}
+
+/* Focus for accessibility */
+.team-member:focus {
+    outline: 3px solid #007DBC;
+}
+
+    </style>
+</head>
+
+<body>
+
+<header>
+    <a href="splash.html">
+    <img src="images/logo.png" alt="logo" class="logo">
+    </a>
+    <nav>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="ais.html">AIS</a></li>
+            <li><a href="profile.html">User Profile</a></li>
+            <li><a href="feedback.html">feedback&program Directory</a></li>
+            <li><a href="team.html" class="active">Team Page</a></li>
+            <li><a href="sitemap.html">Site Map</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+
+<h1>Meet Our Team</h1>
+
+<div class="team-container">
+
+    <!-- Member 1 -->
+    <div class="team-member" tabindex="0">
+        <img src="images/user-solid.PNG" alt="Student 1">
+        <h3>Thevindu Jayasinghe</h3>
+        <p>Home & Template</p>
+
+        <div class="member-details">
+            <p><strong>Role:</strong> Template & Home Page</p>
+            <p>Created the global layout, navigation bar and homepage design.</p>
+        </div>
+    </div>
+
+    <!-- Member 2 -->
+    <div class="team-member" tabindex="0">
+        <img src="images/user-solid.png" alt="Student 2">
+        <h3>Dasun Renuja</h3>
+        <p>Splash & AIS</p>
+
+        <div class="member-details">
+            <p><strong>Role:</strong> Splash Screen & AIS</p>
+            <p>Developed splash screen animation and impact simulator.</p>
+        </div>
+    </div>
+
+    <!-- Member 3 (YOU) -->
+    <div class="team-member" tabindex="0">
+        <img src="images/user-solid.png" alt="Student 3">
+        <h3>Hasaka Perera</h3>
+        <p>Feedback & Team</p>
+
+        <div class="member-details">
+            <p><strong>Role:</strong> Feedback & Team Page</p>
+            <p>Designed feedback form, program directory and team interactions.</p>
+        </div>
+    </div>
+
+    <!-- Member 4 -->
+    <div class="team-member" tabindex="0">
+        <img src="images/user-solid.png" alt="Student 4">
+        <h3>Ranuka Samarasinghe</h3>
+        <p>Profile & Sitemap</p>
+
+        <div class="member-details">
+            <p><strong>Role:</strong> Profile & Sitemap</p>
+            <p>Built user profile system and SVG sitemap navigation.</p>
+        </div>
+    </div>
+
+</div>
+
+</main>
+
+<footer>
+            <div class="footer-links">
+                <a href="pageEditor_ST3.html">Page Editor</a>
+                <a href="validation_ST3.html" target="_blank">Validation</a>
+            </div>
+            <div>
+                <p>Developed by Hasaka Perera · w2151932/20241842</p>
+            </div>
+        </footer>
+
+</body>
+</html>
+
